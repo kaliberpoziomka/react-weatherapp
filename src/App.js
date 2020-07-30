@@ -9,6 +9,10 @@ const GlobalStyle = createGlobalStyle`
   --font-color: ${props => props.theme.mode === 'dark' ? '#ecf0f3' : '#091921'};
 }
 `
+
+fetch(`https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=${process.env.REACT_APP_WEATHER_API_KEY}`)
+.then(response => response.json())
+.then(data => console.log(data));
   
 const startWave = () => {
   const wave = document.querySelector('.wave');
