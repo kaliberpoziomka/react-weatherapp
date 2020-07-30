@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 import {ThemeProvider, createGlobalStyle} from 'styled-components';
+import handleButton from './js/handleButton';
+import toggle from './js/toggle';
+
 
 const GlobalStyle = createGlobalStyle`
 :root {
@@ -10,32 +13,29 @@ const GlobalStyle = createGlobalStyle`
 }
 `
 
-fetch(`https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=${process.env.REACT_APP_WEATHER_API_KEY}`)
-.then(response => response.json())
-.then(data => console.log(data));
-  
-const startWave = () => {
-  const wave = document.querySelector('.wave');
-  wave.classList.add('wave-animate');
-  setTimeout(() => {wave.classList.remove('wave-animate');}, 1000);
-}
-const startSearch = () => {
-  // const button = document.querySelector('.button-wrapper');
-  // const search = document.querySelector('.search');
-  const content = document.querySelector('.content-box');
-  // button.classList.remove('transform');
-  // search.classList.remove('transform');
-  // setTimeout(() => {
-    content.classList.remove('hide')
-  // }, 700)
-}
-const handleButton = () => {
-  startWave();
-  startSearch();
-}
 
 function App() {
+
+// Fetching weahter API
+const [query, setQuery] = useState('');
+const [weather, setWeather] = useState({});
+
+const fetchData = () => {
+  
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`)
+  .then(response => response.json())
+  .then(data => {
+    setWeather(data);
+    console.log(data);
+    setQuery('');
+  }).catch((err) => {
+    console.log(err.cod);
+  });
+}
+
+// Theme useState
   const [theme, setTheme] = useState({mode: 'light'});
+  const [themeText, setThemeText] = useState('light');
 
   return (
     <ThemeProvider theme={theme}>
@@ -46,23 +46,50 @@ function App() {
             <label className="label">
               <div className="toggle">
                 <input onChange={
-                  e => setTheme(theme.mode === 'dark' ? {mode: 'light'} : {mode: 'dark'})
+                  e => {
+                    toggle();
+                    setTheme(theme.mode === 'dark' ? {mode: 'light'} : {mode: 'dark'});
+                    setThemeText(themeText === 'light' ? 'dark' : 'light');
+                }
                 } className="toggle-state" type="checkbox" name="check" value="check" />
                 <div className="indicator"></div>
               </div>
-              <div className="label-text">dark mode</div>
+              <div className="label-text">{themeText} mode</div>
             </label>
           </div>
-          <div className="search">
-            <input type="text" className="search__input" placeholder="FInd your city" required/>
+          <div className="search transform">
+            <input 
+              type="text" 
+              className="search__input" 
+              placeholder="Find your city" 
+              onChange={e => setQuery(e.target.value)} 
+              value={query}
+              required/>
           </div>
-          <div className="button-wrapper">
+          <div className="button-wrapper transform">
             <div className="wave"></div>
-            <button onClick={() => handleButton()}>Search</button>
+            <button 
+              onClick={
+                () => {handleButton();
+                      fetchData();}
+                }>Search</button>
           </div>
         </div>
         <div className="content-wrapper">
           <div className="content-box hide">
+              {(typeof weather.main != "undefined") ? (
+                  <div>
+                    <p>City: {weather.name}, {weather.sys.country}</p>
+                    <p>Clouds: {weather.clouds.all}%</p>
+                    <p> {weather.weather[0].description}</p>
+                    <p> {Math.floor( weather.main.temp - 273.15 )} °C</p>
+
+                  </div>
+              ) : (
+                <div>
+                  <p>We can't find that city, please check spelling</p>
+                </div>
+              )}
           </div>
         </div>
       </div>
