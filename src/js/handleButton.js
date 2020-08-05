@@ -2,10 +2,12 @@
 
 import startSearch from './startSearch';
 import startWave from './startWave';
+import removeIcons from './removeIcons';
 
 const handleButton = () => {
     startWave();
     startSearch();
+    removeIcons();
 }
 
 export default handleButton;

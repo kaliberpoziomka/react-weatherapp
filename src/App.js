@@ -13,12 +13,18 @@ const GlobalStyle = createGlobalStyle`
 }
 `
 
-
 function App() {
 
 // Fetching weahter API
 const [query, setQuery] = useState('');
 const [weather, setWeather] = useState({});
+
+// Theme useState
+const [theme, setTheme] = useState({mode: 'light'});
+const [themeText, setThemeText] = useState('light');
+
+// Defining content box
+const box = document.querySelector('.content-box');
 
 const fetchData = () => {
   
@@ -28,19 +34,29 @@ const fetchData = () => {
     setWeather(data);
     console.log(data);
     setQuery('');
-  }).catch((err) => {
+    if(data.clouds.all  < 10) {
+      box.classList.add(`${themeText}-sun`);
+      console.log(data.rain);
+      console.log(data.clouds.all);
+    } else if (data.clouds.all < 50) {
+      box.classList.add(`${themeText}-suncloud`);
+    } else if (data.clouds.all >= 50) {
+      if (data.rain != undefined) {
+        box.classList.add(`${themeText}-rain`);
+      } else {
+        box.classList.add(`${themeText}-clouds`);
+      }
+    }
+  })
+  .catch((err) => {
     console.log(err.cod);
   });
 }
 
-// Theme useState
-  const [theme, setTheme] = useState({mode: 'light'});
-  const [themeText, setThemeText] = useState('light');
-
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle/>
-      <div className="wrapper">
+      <div className="wrapper light-logo">
         <div className="top-wrapper">
           <div className="switch-mode">
             <label className="label">
@@ -70,20 +86,21 @@ const fetchData = () => {
             <div className="wave"></div>
             <button 
               onClick={
-                () => {handleButton();
-                      fetchData();}
+                () => {
+                  fetchData();
+                  handleButton();
+                      }
                 }>Search</button>
           </div>
         </div>
         <div className="content-wrapper">
           <div className="content-box hide">
               {(typeof weather.main != "undefined") ? (
-                  <div>
-                    <p>City: {weather.name}, {weather.sys.country}</p>
+                  <div className="content-info">
+                    <p>{weather.name}, {weather.sys.country}</p>
                     <p>Clouds: {weather.clouds.all}%</p>
                     <p> {weather.weather[0].description}</p>
                     <p> {Math.floor( weather.main.temp - 273.15 )} °C</p>
-
                   </div>
               ) : (
                 <div>

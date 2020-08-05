@@ -10,8 +10,9 @@
   }
   
   .content-box {
+    position: relative;
     width: 350px;
-    height: 450px;
+    height: 400px;
     margin-top: 60px;
     margin-bottom: 50px;
     align-self: center;
@@ -27,6 +28,14 @@
       8px 4px 12px 0px var(--shadow);
     outline: none;
     transition: background-color 0s ease, opacity 0.5s ease-in;
+    background-repeat: no-repeat;
+    background-size: 200px;
+    background-position: center 30px;
+  }
+
+  .content-info {
+    position: absolute;
+    bottom: 20px;
   }
   
   @media (max-width: 500px) {
@@ -34,3 +43,35 @@
       width: 80%;
     }
   }
+
+.light-sun {
+  background-image: url('../gifs/light-sun.gif');
+}
+
+.light-clouds {
+  background-image: url('../gifs/light-clouds.gif');
+}
+
+.light-rain {
+  background-image: url('../gifs/light-rain.gif');
+}
+
+.light-suncloud {
+  background-image: url('../gifs/light-suncloud.gif');
+}
+
+.dark-sun {
+  background-image: url('../gifs/dark-sun.gif');
+}
+
+.dark-clouds {
+  background-image: url('../gifs/dark-clouds.gif');
+}
+
+.dark-rain {
+  background-image: url('../gifs/dark-rain.gif');
+}
+
+.dark-suncloud {
+  background-image: url('../gifs/dark-suncloud.gif');
+}

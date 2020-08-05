@@ -17,10 +17,22 @@ body {
   color: var(--font-color);
 }
 
+/* Logos inside wrapper div */
+.light-logo {
+  background-image: url('../gifs/light-logo.png');
+}
+
+.dark-logo {
+  background-image: url('../gifs/dark-logo.png');
+}
+
 .wrapper {
   height: 100vh;
   width: 100vw;
   color: var(--font-color);
+  background-repeat: no-repeat;
+  background-size: 180px;
+  background-position: 90% 30px;
 }
 
 .top-wrapper {

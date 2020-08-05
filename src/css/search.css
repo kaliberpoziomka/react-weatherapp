@@ -36,7 +36,7 @@
     }
     .transform {
       transition: transform 0.7s ease-in-out;
-      transform: translateY(100px);
+      transform: translateY(30px);
     }
   }
   
@@ -51,6 +51,6 @@
     transition: box-shadow 0s ease;
   }
   .transform {
-    transform: translateY(250px);
+    transform: translateY(200px);
   }
   
