@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e940bf7effca567e13797813fd8767f6",
+    "revision": "6e99a04abd5a1a85e831ccd1dc97110e",
     "url": "/react-weatherapp/index.html"
   },
   {
-    "revision": "d8eea0a2edbd598bfe6f",
-    "url": "/react-weatherapp/static/css/main.a5e3a4cf.chunk.css"
+    "revision": "c0e41784280e5d6d112b",
+    "url": "/react-weatherapp/static/css/main.90f7917e.chunk.css"
   },
   {
     "revision": "6f8ffaf686b067a9bb84",
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-weatherapp/static/js/2.7868d3ee.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d8eea0a2edbd598bfe6f",
+    "revision": "c0e41784280e5d6d112b",
     "url": "/react-weatherapp/static/js/main.aefe8730.chunk.js"
   },
   {
@@ -32,8 +32,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-weatherapp/static/media/dark-logo.e92966e8.png"
   },
   {
-    "revision": "24f3999d730bc49fe52f22c8c94ce1b1",
-    "url": "/react-weatherapp/static/media/dark-rain.24f3999d.gif"
+    "revision": "fe707ec52a2ef28da2d73ab820642561",
+    "url": "/react-weatherapp/static/media/dark-rain.fe707ec5.gif"
   },
   {
     "revision": "f706fb12caa020def1c3bfec792e4bdb",
@@ -52,8 +52,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-weatherapp/static/media/light-logo.9cd31c65.png"
   },
   {
-    "revision": "dc00050d7c07d2b5b11b52d014564f66",
-    "url": "/react-weatherapp/static/media/light-rain.dc00050d.gif"
+    "revision": "b2fd48e31e2f3bd1db3d8935eaad0d62",
+    "url": "/react-weatherapp/static/media/light-rain.b2fd48e3.gif"
   },
   {
     "revision": "8889b50d208606be5650adfa734438d2",
